@@ -1,0 +1,41 @@
+#2B2B2B - svart
+#DE1B1B - röd
+#F6F6F6 - grå
+#E9E581 - gul/beige
+
+
+The box model
+ - All elements are
+
+ content box
+ padding
+ border
+ margin
+
+css:
+  <style type="text/css">CSS-CODE</style>
+ html:
+  <link rel="stleshheet" href="the-css-file-css">
+
+theSelector:first-child
+the-selector:focus
+theSelector:hover
+theSelector:visited
+
+css units
+  Absolute:
+    - Ccm, mm, in, px, pt...
+    - Usually does not work well on different screen sizes
+  Relative:
+   - % - percentage of parent
+   - em
+   - vw - percentage of View Width
+   - vh % of view height
+   - vmin
+   - vmax
+
+
+
+
+Undvik globala variabler - använd variabler i funktioner istället
+Strict mode - "use strict" för att aktivera

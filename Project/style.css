@@ -1,0 +1,70 @@
+body {
+  background-color: white;
+}
+
+h1 {
+  border: 10px #DE1B1B outset ;
+  color: #2B2B2B;
+  padding: 15px;
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #F6F6F6;
+}
+
+h1.image {
+  padding: 0;
+}
+
+p1 {
+  font-family: verdana;
+  color: red;
+  font-size: 20;
+  text-align: center;
+}
+
+.box1 {
+  border: 5px #DE1B1B outset;
+  width: 50%;
+
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  padding: 20px;
+
+  font-family: verdana;
+  font-size: 20;
+  text-align: center;
+  background-color: #F6F6F6;
+  color: black;
+}
+
+input[type = submit], [type = button] {
+  background-color: #DE1B1B;
+  color: white;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  background-color: #DE1B1B;
+}
+
+li a {
+  display: block;
+  padding: 5px;
+  color: #F6F6F6;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: white;
+  color: black;
+}
