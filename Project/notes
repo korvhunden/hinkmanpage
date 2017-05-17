@@ -39,3 +39,13 @@ css units
 
 Undvik globala variabler - använd variabler i funktioner istället
 Strict mode - "use strict" för att aktivera
+
+alert()
+confirm()
+prompt("Enter" ,"Your name")
+
+/[a-z]/ - hitta allt mellan a och z
+/[a7z]/ - hitta a, 7 och z
+/\D/ - most contain non digit character
+/xy/ - the string must contain an x followed by a y
+/x/i - the string must contain x or X (case insensitive)
