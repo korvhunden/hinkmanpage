@@ -1,79 +1,162 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
    <title>Logged in</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" type="text/css" href="style.css">
    <script src="jquery-3.2.1.js"></script>
-   <script src="jsFile.js"></script>
-</head>
+   <script src="mainscript.js"></script>
+   <script src="dicegame.js"></script>
 
+</head>
 
 <body>
 
-  <div class="top_logo">
-    <img src="resources/title.png";
-  </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- <a class="navbar-brand"><img src="resources/title.png"></a> -->
+        <img class="navbar-brand" src="resources/title.png"></img>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a id="play_game_button">Play Game</a></li>
+        <li><a id="global_highscore_button">Global Highscore</a></li>
+        <li><a id="personal_highscore_button">Personal Highscore</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a id="sign_in_button" class="dropdown-toggle" data-toggle="dropdown">Sign in<span class="caret"></span> </a>
+            <ul class="dropdown-menu">
+              <form method="GET" action="homepage.html" id="log_in_box">
+                  <label for="username">Username:</label>
+                  <input type="text" name="username" placeholder="Enter username"><br><br>
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" placeholder="Enter password"><br><br>
+                  <input type="submit" name="signin" value="Sign in">
+              </form>
+            </ul>
+          </li>
 
-  <div class="left_menu_box2">
-    <button href="">Play Game</a>
-    <button href="">Global Highscore</a>
-    <button href="">Personal Highscore</a>
-    <button href="firstpage.html">Log out</a>
-  </div>
+        <li class="dropdown">
+          <a id="create_account_button" class="dropdown-toggle" data-toggle="dropdown">Create account<span class="caret"></span> </a>
+            <ul class="dropdown-menu">
+              <form method="GET" action="homepage.html" id="create_account_box">
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Choose username"><br><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Choose password">
+                <label for="password_repeat"></label>
+                <input type="password" name="password_repeat" placeholder="Repeat password">
+                <br><br>
+                <input type="submit" name="signin" value="Create account">
+              </form>
+            </ul>
+        </li>
 
+        <li><a id="log_out_button">Log out</a></li>
 
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- <div class="left_menu_box2">
+    <button id="play_game_button">Spela speljäveln</a>
+    <button id="global_highscore_button">Global Highscore</a>
+    <button id="personal_highscore_button">Personal Highscore</a>
+    <button id="log_out_button">Log out</a>
+  </div> -->
 
   <br><br>
 
-  <table id="global_highscore" class="box1">
-    <tr>
-      <th> -- -- -- </th>
-      <th>Global Highscore</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>23</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>19</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>17</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>14</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>4</td>
-    </tr>
+  <div id="dice_game">
 
+    <div id="dice_box">
+      <img class="dice" id="dice1" ></img>
+      <img class="dice" id="dice2" ></img>
+      <img class="dice" id="dice3" ></img>
+    </div>
 
-    <table id="personal_highscore" class="box1">
+    <div id = "multiplier_dice_box">
+      <img class="dice" id="multiplierdice1" ></img>
+    </div>
+
+    <div id="sum_of_dice">
+      Sum of dice: <span id="dice_sum_span">0</span>
+    </div>
+
+    <div id="score">
+      Score: <span id="score_span">0</span>
+    </div>
+
+    <div id="turn">
+      Turn: <span id="turn_span">1</span>
+    </div>
+
+    <div id="user_guess">
+      <input type="text" id="user_guess_text" placeholder="Enter a guess between 3-18">
+      <button id="roll_button">Let's roll!</button>
+    </div>
+
+  </div>
+
+  <div id="global_highscore">
+    <table class="box1">
+      <tr>
+        <th> -- -- -- </th>
+        <th>Global Highscore</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>13</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>4</td>
+      </tr>
+  </div>
+
+  <div id="personal_highscore">
+    <table class="box1">
       <tr>
         <th> -- -- -- </th>
         <th>Personal Highscore</th>
@@ -118,9 +201,10 @@
         <td>10</td>
         <td>4</td>
       </tr>
+  </div>
+
+
+
 </body>
 
 </html>
-
-gör alla till div
-lägg in class "current" och "inte current"
