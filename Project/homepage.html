@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-   <title>Logged in</title>
+   <title>DiceMan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,16 +14,18 @@
    <script src="jquery-3.2.1.js"></script>
    <script src="mainscript.js"></script>
    <script src="dicegame.js"></script>
+   <script src="validationScript.js"></script>
 
 </head>
 
 <body>
 
+<!-- start of the top bar -->
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <!-- <a class="navbar-brand"><img src="resources/title.png"></a> -->
-        <img class="navbar-brand" src="resources/title.png"></img>
+        <!-- The title logo on top of the website -->
+        <img class="navbar-brand" src="resources/title.png" alt="title">
       </div>
       <ul class="nav navbar-nav">
         <li><a id="play_game_button">Play Game</a></li>
@@ -33,59 +35,79 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a id="sign_in_button" class="dropdown-toggle" data-toggle="dropdown">Sign in<span class="caret"></span> </a>
-            <ul class="dropdown-menu">
+            <div class="dropdown-menu">
               <form method="GET" action="homepage.html" id="log_in_box">
-                  <label for="username">Username:</label>
-                  <input type="text" name="username" placeholder="Enter username"><br><br>
-                  <label for="password">Password:</label>
-                  <input type="password" name="password" placeholder="Enter password"><br><br>
-                  <input type="submit" name="signin" value="Sign in">
+                  <label for="login_email_input">Email:</label>
+                  <input type="text" id="login_email_input" class="email_input" name="login_email" placeholder="Enter email" required><br><br>
+
+                  <label for="login_password_input">Password:</label>
+                  <input type="password" id="login_password_input" class="password_input" name="login_password" placeholder="Enter password" required><br><br>
+                  <!-- <input type="submit" name="login_submit" value="Sign in"> -->
+                  <button type="submit" id="login_submit_button">Sign in</button>
               </form>
-            </ul>
+              <div id="login_input_status_box">
+                <!-- Elements that will indicate if the inputs are valid -->
+                <p id="login_email_valid_status"></p>
+              </div>
+            </div>
           </li>
 
         <li class="dropdown">
           <a id="create_account_button" class="dropdown-toggle" data-toggle="dropdown">Create account<span class="caret"></span> </a>
-            <ul class="dropdown-menu">
+            <div class="dropdown-menu">
               <form method="GET" action="homepage.html" id="create_account_box">
-                <label for="username">Username:</label>
-                <input type="text" name="username" placeholder="Choose username"><br><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password" placeholder="Choose password">
-                <label for="password_repeat"></label>
-                <input type="password" name="password_repeat" placeholder="Repeat password">
+                <label for="create_account_username">Username:</label>
+                <input type="text" id="create_account_username" class="username_input" name="uname" placeholder="Choose a username" required>
+
+                <label for="create_account_fname">First name:</label>
+                <input type="text" id="create_account_fname" class="name_input" name="fname" placeholder="Enter first name" required>
+
+                <label for="create_account_lname">Last name:</label>
+                <input type="text" id="create_account_lname" class="name_input" name="lname" placeholder="Enter last name" required>
+
+                <label for="create_account_email">Email:</label>
+                <input type="text" id="create_account_email" class="email_input" name="email" placeholder="Enter email" required>
+
+                <label for="create_account_password">Password:</label>
+                <input type="password" id="create_account_password" class="password_input" name="password" placeholder="Choose password" required>
+
+                <label for="create_account_password_repeat"></label>
+                <input type="password" id="create_account_password_repeat" class="password_input" name="password_repeat" placeholder="Repeat password" required>
+
                 <br><br>
                 <input type="submit" name="signin" value="Create account">
               </form>
-            </ul>
+              <div id="create_account_input_status_box">
+                <!-- Elements that will indicate if the inputs are valid -->
+                <p id="create_account_username_valid_status"></p>
+                <p id="create_account_fname_valid_status"></p>
+                <p id="create_account_lname_valid_status"></p>
+                <p id="create_account_email_valid_status"></p>
+                <p id="create_account_password_valid_status"></p>
+                <p id="create_account_password_repeat_valid_status"></p>
+              </div>
+            </div>
         </li>
-
         <li><a id="log_out_button">Log out</a></li>
-
       </ul>
 
     </div>
   </nav>
-
-  <!-- <div class="left_menu_box2">
-    <button id="play_game_button">Spela speljäveln</a>
-    <button id="global_highscore_button">Global Highscore</a>
-    <button id="personal_highscore_button">Personal Highscore</a>
-    <button id="log_out_button">Log out</a>
-  </div> -->
+  <!-- end of the top bar -->
 
   <br><br>
 
+<!-- start of the game element -->
   <div id="dice_game">
 
     <div id="dice_box">
-      <img class="dice" id="dice1" ></img>
-      <img class="dice" id="dice2" ></img>
-      <img class="dice" id="dice3" ></img>
+      <img class="dice" id="dice1" alt="dice1">
+      <img class="dice" id="dice2" alt="dice2">
+      <img class="dice" id="dice3" alt="dice3">
     </div>
 
     <div id = "multiplier_dice_box">
-      <img class="dice" id="multiplierdice1" ></img>
+      <img class="dice" id="multiplierdice1" alt="multiplier_dice1">
     </div>
 
     <div id="sum_of_dice">
@@ -106,7 +128,9 @@
     </div>
 
   </div>
+  <!-- end of the game element -->
 
+<!-- start of the global highscore element -->
   <div id="global_highscore">
     <table class="box1">
       <tr>
@@ -153,8 +177,11 @@
         <td>10</td>
         <td>4</td>
       </tr>
+    </table>
   </div>
+<!-- end of the global highscore element -->
 
+<!-- start of the personal highscore element -->
   <div id="personal_highscore">
     <table class="box1">
       <tr>
@@ -201,9 +228,9 @@
         <td>10</td>
         <td>4</td>
       </tr>
+    </table>
   </div>
-
-
+  <!-- end of the personal highscore element -->
 
 </body>
 

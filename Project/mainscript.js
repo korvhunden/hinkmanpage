@@ -1,11 +1,11 @@
-var numberOfTurns = 10
-var numberOfDice = 3
-var numberOfMultiplierDice = 1
-var userGuess = 0
+var numberOfTurns = 10;
+var numberOfDice = 3;
+var numberOfMultiplierDice = 1;
+var userGuess = 0;
+var loggedIn = false; // When you first open the website you are logged out
 
 $(document).ready(function() {
 
-  var loggedIn = false
   if (loggedIn) {
     $("#log_out_button").show();
     $("#create_account_button").hide();
@@ -17,7 +17,7 @@ $(document).ready(function() {
     $("#sign_in_button").show();
   }
 
-  var game // the game object
+  var game; // the game object
 
   hideEverything(); // Hides all elements the user is not supposed to see until selected in the menu
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     updateGui();
 
-  })
+  });
 
   function updateGui() {
     // $("#dice1").text(game.diceArray[0]);
@@ -73,19 +73,19 @@ $(document).ready(function() {
     $(id).attr('src','resources/dice6.png');
     break;
     default:
-    alert("No value between 1 - 6 given for dice: " + id)
+    alert("No value between 1 - 6 given for dice: " + id);
     }
   }
 
   $("#global_highscore_button").click(function(){
     hideEverything();
     $("#global_highscore").show();
-  })
+  });
 
   $("#personal_highscore_button").click(function(){
     hideEverything();
     $("#personal_highscore").show();
-  })
+  });
 
   $("#roll_button").click(function() {
 
@@ -115,19 +115,25 @@ $(document).ready(function() {
 
     }
 
-  })
+  });
 
   $("#log_in_box").submit(function() {
+    this.preventDefault();
     loggedIn = true;
-  })
+    alert("Log in box submited");
+  });
 
   $("#create_account_box").submit(function() {
+    event.stopPropagation();
     loggedIn = true;
-  })
+    alert("Create account box submited");
+  });
 
   $("#log_out_button").click(function() {
+    event.stopPropagation();
     loggedIn = false;
-  })
+    alert("Log out button clicked");
+  });
 
 
 });
