@@ -3,23 +3,26 @@ var numberOfDice = 3;
 var numberOfMultiplierDice = 1;
 var userGuess = 0;
 var loggedIn = false; // When you first open the website you are logged out
+var game; // the game object
 
 $(document).ready(function() {
 
-  if (loggedIn) {
-    $("#log_out_button").show();
-    $("#create_account_button").hide();
-    $("#sign_in_button").hide();
-  }
-  else {
-    $("#log_out_button").hide();
-    $("#create_account_button").show();
-    $("#sign_in_button").show();
-  }
-
-  var game; // the game object
 
   hideEverything(); // Hides all elements the user is not supposed to see until selected in the menu
+  checkLoggedIn();
+
+  function checkLoggedIn() {
+    if (loggedIn) {
+      $("#log_out_button").show();
+      $("#create_account_button").hide();
+      $("#sign_in_button").hide();
+    }
+    else {
+      $("#log_out_button").hide();
+      $("#create_account_button").show();
+      $("#sign_in_button").show();
+    }
+  }
 
   function hideEverything() {
     $("#global_highscore").hide();
@@ -118,22 +121,30 @@ $(document).ready(function() {
   });
 
   $("#log_in_box").submit(function() {
-    this.preventDefault();
+    event.preventDefault();
     loggedIn = true;
     alert("Log in box submited");
+    checkLoggedIn();
   });
 
   $("#create_account_box").submit(function() {
-    event.stopPropagation();
+    event.preventDefault();
     loggedIn = true;
     alert("Create account box submited");
+    checkLoggedIn();
   });
 
   $("#log_out_button").click(function() {
-    event.stopPropagation();
+    event.preventDefault();
     loggedIn = false;
     alert("Log out button clicked");
+    checkLoggedIn();
   });
+
+  // function user {
+  //
+  //
+  // }
 
 
 });

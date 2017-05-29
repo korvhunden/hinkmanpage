@@ -1,3 +1,5 @@
+var createAccountButtonStatusObject;
+
 $(document).ready(function() {
 
   // start of
@@ -34,39 +36,35 @@ $(document).ready(function() {
 
   // Start of script that checks the inputs
 
+  // function checkOkToLogin() {
+  //   this.login_email_input = false;
+  // }
+
   $("#login_email_input").change(function() {
     var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
 
     if (userInput.length > 0) { // Only run this code if there is something in the input field
       if (isEmailInputValid(userInput)) {
         $("#login_email_valid_status").empty(); // If the email is valid, remove error messages
+        $("#login_submit_button").prop("disabled", false);
+        // loginEmailSubmitStatus = false?
+        // Skicka in i loginSubmitStatus("loginEmailSubmitStatus", loginEmailSubmitStatus) kanske? Någon form av id (fixat typ)
       }
       else {
         $("#login_email_valid_status").html("The given email adress is not valid");
+        $("#login_submit_button").prop("disabled", true);
       }
     }
     else {
       $("#login_email_valid_status").empty(); // Remove error message if input is empty
+      $("#login_submit_button").prop("disabled", true);
     }
 
   });
 
-  // $("#x").change(function() {
-  //   var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
-  //
-  //   if (userInput.length > 0) { // Only run this code if there is something in the input field
-  //     if (--x------(userInput)) {
-  //       $("#x").empty(); // If the email is valid, remove error messages
-  //     }
-  //     else {
-  //       $("#x").html("The given ----x---- is not valid");
-  //     }
-  //   }
-  //   else {
-  //     $("#x").empty(); // Remove error message if input is empty
-  //   }
-  //
-  // });
+  // ------ Functions for the create account form --------
+
+  // -- If the input from the user is not valid and the field gets unfocused these functions will generate an error message --
 
   $("#create_account_username").change(function() {
     var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
@@ -176,6 +174,126 @@ $(document).ready(function() {
 
   });
 
+  // -- End of functions that generate error messages
 
+  // -- Start of functions to disable the submit button for the form is every input is not validated --
+
+  function createAccountButtonStatus() {
+    this.create_account_username_ok = false;
+    this.create_account_fname_ok = false;
+    this.create_account_lname_ok = false;
+    this.create_account_email_ok = false;
+    this.create_account_password_ok = false;
+    this.create_account_password_repeat_ok = false;
+  }
+
+  // If all inputs are valid, this returns true
+  createAccountButtonStatus.prototype.checkButtonStatus = function() {
+    if (this.create_account_username_ok && this.create_account_fname_ok && this.create_account_lname_ok && this.create_account_email_ok && this.create_account_password_ok && this.create_account_password_repeat_ok) {
+      $("#create_account_submit_button").prop("disabled", false);
+    }
+    else {
+      $("#create_account_submit_button").prop("disabled", true);
+    }
+  };
+
+
+  createAccountButtonStatusObject = new createAccountButtonStatus();
+
+  // -- These functions checks if input is valid when a key is lifted - if not, they will tell createAccountButtonStatusObject to disable the button
+
+  $("#create_account_username").keyup(function() {
+    var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
+
+    if (userInput.length > 0) { // Only run this code if there is something in the input field
+      if (isUsernameVaild(userInput)) {
+        createAccountButtonStatusObject.create_account_username_ok = true;
+      }
+      else {
+        createAccountButtonStatusObject.create_account_username_ok = false;
+      }
+    }
+    else {
+      createAccountButtonStatusObject.create_account_username_ok = false;
+    }
+
+    createAccountButtonStatusObject.checkButtonStatus();
+  });
+
+  $("#create_account_fname").keyup(function() {
+    var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
+
+    if (userInput.length > 0) { // Only run this code if there is something in the input field
+      if (isNameInputValid(userInput)) {
+        createAccountButtonStatusObject.create_account_fname_ok = true;
+      }
+      else {
+        createAccountButtonStatusObject.create_account_fname_ok = false;
+      }
+    }
+    else {
+      createAccountButtonStatusObject.create_account_fname_ok = false;
+    }
+    createAccountButtonStatusObject.checkButtonStatus();
+  });
+
+  $("#create_account_lname").keyup(function() {
+    var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
+
+    if (userInput.length > 0) { // Only run this code if there is something in the input field
+      if (isNameInputValid(userInput)) {
+        createAccountButtonStatusObject.create_account_lname_ok = true;
+      }
+      else {
+        createAccountButtonStatusObject.create_account_lname_ok = false;
+      }
+    }
+    else {
+      createAccountButtonStatusObject.create_account_lname_ok = false;
+    }
+    createAccountButtonStatusObject.checkButtonStatus();
+  });
+
+  $("#create_account_email").keyup(function() {
+    var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
+
+    if (userInput.length > 0) { // Only run this code if there is something in the input field
+      if (isEmailInputValid(userInput)) {
+        createAccountButtonStatusObject.create_account_email_ok = true;
+      }
+      else {
+        createAccountButtonStatusObject.create_account_email_ok = false;
+      }
+    }
+    else {
+      createAccountButtonStatusObject.create_account_email_ok = false;
+    }
+    createAccountButtonStatusObject.checkButtonStatus();
+  });
+
+  $("#create_account_password, #create_account_password_repeat").keyup(function() {
+    var userInput1 = $("#create_account_password").val(); // For more easily readable code - userInput is the value of the input
+    var userInput2 = $("#create_account_password_repeat").val();
+
+    if (userInput1.length > 0) { // Only run this code if there is something in the input field
+      if (isPasswordInputValid(userInput1) && userInput1 == userInput2 ) {
+        createAccountButtonStatusObject.create_account_password_ok = true;
+        createAccountButtonStatusObject.create_account_password_repeat_ok = true;
+      }
+      else {
+        createAccountButtonStatusObject.create_account_password_ok = false;
+        createAccountButtonStatusObject.create_account_password_repeat_ok = false;
+      }
+    }
+    else {
+      createAccountButtonStatusObject.create_account_password_ok = false;
+      createAccountButtonStatusObject.create_account_password_repeat_ok = false;
+    }
+    createAccountButtonStatusObject.checkButtonStatus();
+  });
+
+  // ----- End of functions to disable the submit button for the form is every input is not validated ------
+
+  // ------ End of functions for the create account form --------
 
 });

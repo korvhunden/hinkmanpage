@@ -123,5 +123,9 @@ p1 {
 }
 
 #log_in_box {
-  
+
+}
+
+button:disabled {
+  color: grey;
 }

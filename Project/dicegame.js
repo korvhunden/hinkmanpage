@@ -10,7 +10,7 @@ function createDiceArray(noOfDice) {
 }
 
 function createMultiplierDiceArray(noOfDice) {
-  multiplierDiceArray = [noOfDice];
+  var multiplierDiceArray = [noOfDice];
   for (var i = 0; i < noOfDice; i++)
   {
     multiplierDiceArray[i] = 6;
@@ -27,7 +27,7 @@ function sumOfArrayValues(array)
     sum += array[i];
   }
   return sum;
-};
+}
 
 function DiceGame(noOfDice, noOfMultiplierDice, noOfTurns) {
   this.noOfDice = noOfDice;
@@ -41,7 +41,7 @@ function DiceGame(noOfDice, noOfMultiplierDice, noOfTurns) {
 
   this.diceArray = createDiceArray(noOfDice);
   this.multiplierDiceArray = createMultiplierDiceArray(noOfMultiplierDice);
-};
+}
 
 DiceGame.prototype.checkGameOver = function() {
   return this.turnsLeft == 0;
@@ -68,11 +68,11 @@ DiceGame.prototype.rollDice = function () {
     {
       this.diceArray[i] = Math.ceil(Math.random() * 6);
     }
-    for (var i = 0; i < this.noOfMultiplierDice; i++)
+    for (i = 0; i < this.noOfMultiplierDice; i++)
     {
       this.multiplierDiceArray[i] = Math.ceil(Math.random() * 6);
     }
 
-    this.turnsLeft--
+    this.turnsLeft--;
 
 };
