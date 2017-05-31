@@ -4,25 +4,35 @@ var numberOfMultiplierDice = 1;
 var userGuess = 0;
 var loggedIn = false; // When you first open the website you are logged out
 var game; // the game object
+function createUser() { // Constructor for the user object
+  this.loggedIn = false;
+  this.email = null;
+  this.username = null;
+  this.fName = null;
+  this.lName = null;
+  this.sessionId = null;
+};
+var user = new createUser; // The user object
+
+function checkLoggedIn() {
+  console.log("Logincheck! user.loggedIn is: " + user.loggedIn);
+  if (user.loggedIn) {
+    $("#log_out_button").show();
+    $("#create_account_button").hide();
+    $("#sign_in_button").hide();
+  }
+  else {
+    $("#log_out_button").hide();
+    $("#create_account_button").show();
+    $("#sign_in_button").show();
+  }
+}
 
 $(document).ready(function() {
 
 
   hideEverything(); // Hides all elements the user is not supposed to see until selected in the menu
   checkLoggedIn();
-
-  function checkLoggedIn() {
-    if (loggedIn) {
-      $("#log_out_button").show();
-      $("#create_account_button").hide();
-      $("#sign_in_button").hide();
-    }
-    else {
-      $("#log_out_button").hide();
-      $("#create_account_button").show();
-      $("#sign_in_button").show();
-    }
-  }
 
   function hideEverything() {
     $("#global_highscore").hide();
@@ -81,13 +91,26 @@ $(document).ready(function() {
   }
 
   $("#global_highscore_button").click(function(){
-    hideEverything();
-    $("#global_highscore").show();
+    if (user.loggedIn) {
+      hideEverything();
+      globalHighscoreRequest(user);
+      $("#global_highscore").show();
+    }
+    else {
+      alert("You must be logged in to see highscores")
+    }
+
   });
 
   $("#personal_highscore_button").click(function(){
-    hideEverything();
-    $("#personal_highscore").show();
+    if (user.loggedIn) {
+      hideEverything();
+      personalHighscoreRequest(user);
+      $("#personal_highscore").show();
+    }
+    else {
+      alert("You must be logged in to see highscores")
+    }
   });
 
   $("#roll_button").click(function() {
@@ -111,7 +134,11 @@ $(document).ready(function() {
       updateGui();
 
       if (game.checkGameOver()) {
+        updateGui();
         alert("Game over. Your score: " + game.totalScore);
+        if (user.loggedIn) {
+          addScoreRequest(user, game.totalScore);
+        }
         game = new DiceGame(numberOfDice, numberOfMultiplierDice, numberOfTurns);
         updateGui();
       }
@@ -122,29 +149,52 @@ $(document).ready(function() {
 
   $("#log_in_box").submit(function() {
     event.preventDefault();
-    loggedIn = true;
-    alert("Log in box submited");
-    checkLoggedIn();
+    user = new createUser();
+
+    var userEmailInput = $("#login_email_input").val();
+    var userPasswordInput = $("#login_password_input").val();
+
+    loginRequest(user, userEmailInput, userPasswordInput);
+
   });
 
   $("#create_account_box").submit(function() {
     event.preventDefault();
-    loggedIn = true;
+    user = new createUser();
+
+    var userUsernameInput = $("#create_account_username").val();
+    var userFNameInput = $("#create_account_fname").val();
+    var userLNameAcount = $("#create_account_lname").val();
+    var userEmailInput = $("#create_account_email").val();
+    var userPasswordInput = $("#create_account_password").val();
+
+    if (createAccountRequest(user, userUsernameInput, userFNameInput, userLNameAcount, userEmailInput, userPasswordInput)) {
+      loggedIn = true;
+      loginRequest(user, userEmailInput, userPasswordInput); // Log in the created user
+      console.log("loginRequest after createAccountRequest happening");
+    }
     alert("Create account box submited");
     checkLoggedIn();
   });
 
   $("#log_out_button").click(function() {
     event.preventDefault();
-    loggedIn = false;
-    alert("Log out button clicked");
-    checkLoggedIn();
+
+    logOutRequest(user);
+
+    console.log("log_out_button pressed")
   });
 
-  // function user {
-  //
-  //
-  // }
+  function updateGlobalHighscore() {
+    var globalHighscoreTable = globalHighscoreRequest();
+    if (globalHighscoreTable) {
+      $("#global_highscore").empty();
+      $("#global_highscore").append(globalHighscoreTable);
+    }
+    else {
+      alert("globalHighscoreRequest failed");
+    }
+  }
 
 
 });

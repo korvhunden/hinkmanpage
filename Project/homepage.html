@@ -12,9 +12,10 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" type="text/css" href="style.css">
    <script src="jquery-3.2.1.js"></script>
-   <script src="mainscript.js"></script>
    <script src="dicegame.js"></script>
    <script src="validationScript.js"></script>
+   <script src="serverCommunicationScript.js"></script>
+   <script src="mainscript.js"></script>
 
 </head>
 
@@ -33,10 +34,11 @@
         <li><a id="personal_highscore_button">Personal Highscore</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><p id="account_Name_Display"></p></li>
         <li class="dropdown">
           <a id="sign_in_button" class="dropdown-toggle" data-toggle="dropdown">Sign in<span class="caret"></span> </a>
             <div class="dropdown-menu">
-              <form method="GET" action="homepage.html" id="log_in_box">
+              <form method="GET" id="log_in_box">
                   <label for="login_email_input">Email:</label>
                   <input type="text" id="login_email_input" class="email_input" name="login_email" placeholder="Enter email" required><br><br>
 
@@ -55,7 +57,7 @@
         <li class="dropdown">
           <a id="create_account_button" class="dropdown-toggle" data-toggle="dropdown">Create account<span class="caret"></span> </a>
             <div class="dropdown-menu">
-              <form method="GET" action="homepage.html" id="create_account_box">
+              <form method="GET" id="create_account_box">
                 <label for="create_account_username">Username:</label>
                 <input type="text" id="create_account_username" class="username_input" name="uname" placeholder="Choose a username" required>
 
@@ -129,12 +131,17 @@
       <button id="roll_button">Let's roll!</button>
     </div>
 
+    <p>How to play:</p>
+    <p>Enter a value between 3 - 18 and press the button that says "let's roll!"</p>
+    <p>If your guess equals or is less than the sum of the three top dice it will be multiplied by the multiplier die and added to your score. After 10 rounds the game ends.
+
   </div>
   <!-- end of the game element -->
 
 <!-- start of the global highscore element -->
-  <div id="global_highscore">
-    <table class="box1">
+<!-- Jag vill inte göra om det här när jag vet att det fungerar, men har insett att <ol> var nog ett bättre val för det här elementet -->
+  <div id="global_highscore" class="box1">
+    <table >
       <tr>
         <th> -- -- -- </th>
         <th>Global Highscore</th>
@@ -184,8 +191,8 @@
 <!-- end of the global highscore element -->
 
 <!-- start of the personal highscore element -->
-  <div id="personal_highscore">
-    <table class="box1">
+  <div id="personal_highscore" class="box1">
+    <table >
       <tr>
         <th> -- -- -- </th>
         <th>Personal Highscore</th>

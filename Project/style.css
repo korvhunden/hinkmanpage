@@ -2,29 +2,6 @@ body {
   background-color: white;
 }
 
-h1 {
-  border: 10px #DE1B1B outset ;
-  color: #2B2B2B;
-  padding: 15px;
-  width: 50%;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  background-color: #F6F6F6;
-}
-
-h1.image {
-  padding: 0;
-}
-
-p1 {
-  font-family: verdana;
-  color: red;
-  font-size: 20;
-  text-align: center;
-}
-
 .box1 {
 
   border: 5px #DE1B1B outset;
@@ -42,55 +19,6 @@ p1 {
   background-color: #F6F6F6;
   color: black;
 
-}
-
-/*input[type = submit], [type = button] {
-  background-color: #DE1B1B;
-  color: white;
-  padding: 16px 32px;
-  cursor: pointer;
-}*/
-
-/*ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  width: 200px;
-  background-color: #DE1B1B;
-}*/
-
-.left_menu_box2 {
-  background-color: #DE1B1B;
-  width: 170px;
-  display: inline-block;
-}
-
-.left_menu_box2 button{
-  display: block;
-  padding: 20px;
-  transition: all 0.2s ease;
-  text-decoration: none;
-
-  background-color: #DE1B1B;
-  color: #F6F6F6;
-  font-size: 20;
-}
-
-.left_menu_box2 button:hover {
-  background-color: #F6F6F6;
-  color: #2B2B2B;
-}
-
-.left_menu_box2 button:active {
-  background-color: #E9E581;
-  color: #2B2B2B;
-}
-
-.top_logo {
-  margin-bottom: 50px;
-  padding: 10px;
-  border: 15px;
-  border-color: #DE1B1B;
 }
 
 #dice_game {
@@ -122,10 +50,12 @@ p1 {
   length: 100px;
 }
 
-#log_in_box {
-
-}
-
 button:disabled {
   color: grey;
+  cursor: not-allowed;
+}
+
+#account_Name_Display {
+  position: relative;
+  padding-top: 15px;
 }
