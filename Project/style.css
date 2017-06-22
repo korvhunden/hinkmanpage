@@ -5,7 +5,7 @@ body {
 .box1 {
 
   border: 5px #DE1B1B outset;
-  width: 50%;
+  width: 300px;
 
   margin: 0px;
   margin-top: 50px;
@@ -57,5 +57,14 @@ button:disabled {
 
 #account_Name_Display {
   position: relative;
-  padding-top: 15px;
+  padding: 15px;
+}
+
+#global_highscore_button, #personal_highscore_button {
+  cursor: not-allowed;
+}
+
+.dice_identifier {
+  font: "Arial Black";
+  font-size: 20px;
 }

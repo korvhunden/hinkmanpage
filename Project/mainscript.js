@@ -20,12 +20,21 @@ function checkLoggedIn() {
     $("#log_out_button").show();
     $("#create_account_button").hide();
     $("#sign_in_button").hide();
+
+    // Changes apperance of and enables the highscore buttons
+    $("#global_highscore_button, #personal_highscore_button").css("cursor", "pointer");
+
+
   }
   else {
     $("#log_out_button").hide();
     $("#create_account_button").show();
     $("#sign_in_button").show();
+
+    // Changes apperance of and disables the highscore buttons
+    $("#global_highscore_button, #personal_highscore_button").css("cursor", "not-allowed");
   }
+
 }
 
 $(document).ready(function() {
@@ -51,10 +60,6 @@ $(document).ready(function() {
   });
 
   function updateGui() {
-    // $("#dice1").text(game.diceArray[0]);
-    // $("#dice2").text(game.diceArray[1]);
-    // $("#dice3").text(game.diceArray[2]);
-    // $("#multiplierdice1").text(game.multiplierDiceArray[0]);
     changeDiceImg("#dice1", game.diceArray[0]);
     changeDiceImg("#dice2", game.diceArray[1]);
     changeDiceImg("#dice3", game.diceArray[2]);
@@ -122,7 +127,6 @@ $(document).ready(function() {
     }
 
     else {
-      // Det ska snurra Lite
       game.rollDice();
 
       // If the guess is lower than the sum of the dice, add the guess multiplied with

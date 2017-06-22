@@ -209,10 +209,6 @@ function addScoreRequest(user, scoreToAdd) {
 // -- To get the global highscore --
 
 function globalHighscoreRequest(user) {
-  // var script = document.createElement("script");
-  // script.src = "http://193.10.30.163/scores?callback=theCallback&session="+ user.sessionId;
-  // document.head.appendChild(script);
-
   $.ajax({
       url: "http://193.10.30.163/scores?callback=jsonpCallback&session="+user.sessionId,
       type: "GET",
@@ -267,10 +263,6 @@ function globalHighscoreCallback(response) {
 // -- To get personal highscore
 
 function personalHighscoreRequest(user) {
-  // var script = document.createElement("script");
-  // script.src = "http://193.10.30.163/scores?callback=theCallback&session="+ user.sessionId;
-  // document.head.appendChild(script);
-
   $.ajax({
       url: "http://193.10.30.163/scores/"+user.username+"?callback=jsonpCallback&session="+user.sessionId,
       type: "GET",

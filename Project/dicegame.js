@@ -32,8 +32,6 @@ function sumOfArrayValues(array)
 function DiceGame(noOfDice, noOfMultiplierDice, noOfTurns) {
   this.noOfDice = noOfDice;
   this.noOfMultiplierDice = noOfMultiplierDice;
-// Unnecessary code? Kanske skicka in arrayer med tärningar istället
-
   this.noOfTurns = noOfTurns;
   this.turnsLeft = noOfTurns;
   this.playerGuess = 0;
@@ -44,7 +42,7 @@ function DiceGame(noOfDice, noOfMultiplierDice, noOfTurns) {
 }
 
 DiceGame.prototype.checkGameOver = function() {
-  return this.turnsLeft == 0;
+  return this.turnsLeft === 0;
 };
 
 DiceGame.prototype.getTurn = function() {

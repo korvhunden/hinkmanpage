@@ -2,13 +2,14 @@ var createAccountButtonStatusObject;
 
 $(document).ready(function() {
 
-  // start of
+  // Start of
   // validation functions
+
   // These functions takes a string and returns true if it passes the regular expression in the function.
 
   function isEmailInputValid(emailInput) {
     var emailRegExp = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/; // Regular expression for valid email adress from https://www.w3schools.com/jsref/prop_email_pattern.asp
-    // Tillåter inte stora bokstäver!
+
     return emailRegExp.test(emailInput);
   }
 
@@ -36,10 +37,6 @@ $(document).ready(function() {
 
   // Start of script that checks the inputs
 
-  // function checkOkToLogin() {
-  //   this.login_email_input = false;
-  // }
-
   $("#login_email_input").change(function() {
     var userInput = $(this).val(); // For more easily readable code - userInput is the value of the input
 
@@ -47,8 +44,6 @@ $(document).ready(function() {
       if (isEmailInputValid(userInput)) {
         $("#login_email_valid_status").empty(); // If the email is valid, remove error messages
         $("#login_submit_button").prop("disabled", false);
-        // loginEmailSubmitStatus = false?
-        // Skicka in i loginSubmitStatus("loginEmailSubmitStatus", loginEmailSubmitStatus) kanske? Någon form av id (fixat typ)
       }
       else {
         $("#login_email_valid_status").html("The given email adress is not valid");
