@@ -1,0 +1,70 @@
+body {
+  background-color: white;
+}
+
+.box1 {
+
+  border: 5px #DE1B1B outset;
+  width: 300px;
+
+  margin: 0px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  padding: 20px;
+
+  font-family: verdana;
+  font-size: 20;
+  text-align: center;
+  background-color: #F6F6F6;
+  color: black;
+
+}
+
+#dice_game {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #DE1B1B;
+  display: inline-block;
+  width: 75%;
+}
+
+#dice_box {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+}
+
+#multiplier_dice_box {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+}
+
+.dice {
+  border-style: solid;
+  border-width: 2px;
+  border-color: blue;
+  padding: 5px;
+  width: 100px;
+  length: 100px;
+}
+
+button:disabled {
+  color: grey;
+  cursor: not-allowed;
+}
+
+#account_Name_Display {
+  position: relative;
+  padding: 15px;
+}
+
+#global_highscore_button, #personal_highscore_button {
+  cursor: not-allowed;
+}
+
+.dice_identifier {
+  font: "Arial Black";
+  font-size: 20px;
+}
