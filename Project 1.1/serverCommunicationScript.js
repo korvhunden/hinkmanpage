@@ -244,6 +244,7 @@ function globalHighscoreCallback(response) {
       tableToReturn.appendChild(tr);
     }
     $("#global_highscore").empty();
+    $("#global_highscore").append("<th>Global Highscore <th>");
     $("#global_highscore").append(tableToReturn);
   }
   else if (response.status == 400) {
@@ -280,30 +281,10 @@ function personalHighscoreCallback(response) {
   if (response.status == 200) {
     var tableToReturn = document.createElement("table");
 
-    // In this for-loop the scores are sorted into the array "sortedScoreArray", highest to lowest
-    //var sortedScoreArray = [0];
+    // The scores are sorted into the array "sortedScoreArray", highest to lowest
     var sortedScoreArray = [];
-
-    // for (var i = 0; i < response.data.scores.length; i++) {
-    //   // sortedScoreArray[i] = response.data.scores[i].score;
-    //
-    //   // This loop checks if any score in "sortedScoreArray" is less than the fetched score
-    //   // If so, the fetched score takes its place and the lower scores get moved down a step
-    //   for (var j = 0; j <= i; j++) {
-    //     if (sortedScoreArray[j] < response.data.scores[i].score) {
-    //       for (var k = 0; k < sortedScoreArray.size - j; k++) {
-    //         sortedScoreArray[sortedScoreArray.size - k] = sortedScoreArray[sortedScoreArray.size - 1 - k];
-    //       }
-    //     }
-    //   }
-    //
-    // }
-
     for (var i = 0; i < response.data.scores.length; i++) {
-      // sortedScoreArray[i] = response.data.scores[i].score;
       sortedScoreArray.push(response.data.scores[i].score);
-      console.log("ScoreArray " + sortedScoreArray[i]);
-
     }
 
     sortedScoreArray.sort(function(a, b){return b - a});
@@ -312,7 +293,7 @@ function personalHighscoreCallback(response) {
       var tr = document.createElement("tr");
       var th1 = document.createElement("th");
       var th2 = document.createElement("th");
-      var rankTextNode = document.createTextNode(i + 1 + " - ");
+      var rankTextNode = document.createTextNode(i + 1);
       var scoreTextNode = document.createTextNode(sortedScoreArray[i]);
 
       th1.appendChild(rankTextNode);
@@ -323,6 +304,7 @@ function personalHighscoreCallback(response) {
       tableToReturn.appendChild(tr);
     }
     $("#personal_highscore").empty();
+    $("#personal_highscore").append("<th>Personal Highscore <th>");
     $("#personal_highscore").append(tableToReturn);
   }
   else if (response.status == 400) {

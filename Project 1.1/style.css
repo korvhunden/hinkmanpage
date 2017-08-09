@@ -7,7 +7,7 @@ body {
   border: 5px #DE1B1B outset;
   width: 300px;
 
-  margin: 0px;
+  margin: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
 
@@ -67,4 +67,8 @@ button:disabled {
 .dice_identifier {
   font: "Arial Black";
   font-size: 20px;
+}
+
+th {
+  padding: 5px;
 }
